@@ -45,8 +45,6 @@
 /* defaults */
 #define CIO_MAX_CHUNKS_UP  64   /* default limit for cio_ctx->max_chunks_up */
 
-int cio_page_size;
-
 struct cio_ctx {
     int flags;
     char *root_path;

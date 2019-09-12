@@ -53,6 +53,7 @@ static int check_root_path(struct cio_ctx *ctx, const char *root_path)
     return access(root_path, W_OK);
 }
 
+/* extern int cio_page_size; */
 struct cio_ctx *cio_create(const char *root_path,
                            void (*log_cb), int log_level, int flags)
 {
@@ -69,8 +70,6 @@ struct cio_ctx *cio_create(const char *root_path,
         return NULL;
     }
 #endif
-
-    cio_page_size = getpagesize();
 
     /* Create context */
     ctx = calloc(1, sizeof(struct cio_ctx));

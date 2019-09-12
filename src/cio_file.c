@@ -55,6 +55,8 @@ char cio_file_init_bytes[] =   {
     0x00, 0x00
 };
 
+int cio_page_size = 0;
+
 #define ROUND_UP(N, S) ((((N) + (S) - 1) / (S)) * (S))
 
 /* Get the number of bytes in the Content section */
@@ -463,6 +465,10 @@ struct cio_file *cio_file_open(struct cio_ctx *ctx,
     int len;
     char *path;
     struct cio_file *cf;
+
+    if (cio_page_size == 0) {
+        cio_page_size = getpagesize();
+    }
 
     len = strlen(ch->name);
     if (len == 1 && (ch->name[0] == '.' || ch->name[0] == '/')) {
