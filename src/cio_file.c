@@ -515,7 +515,7 @@ struct cio_file *cio_file_open(struct cio_ctx *ctx,
     ret = open_and_up(ctx);
     if (ret == CIO_FALSE) {
         /* we reached our limit, let the file 'down' */
-        return cf;
+        return NULL;
     }
 
     /* Open file (file descriptor and set file size) */
