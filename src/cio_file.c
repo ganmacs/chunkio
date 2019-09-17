@@ -319,7 +319,7 @@ static int mmap_file(struct cio_ctx *ctx, struct cio_chunk *ch, size_t size)
     if (cf->map == MAP_FAILED) {
         cio_errno();
         cf->map = NULL;
-        cio_file_close(ch, CIO_TRUE);
+        cio_file_close(ch, CIO_FALSE);
         return -1;
     }
     cf->alloc_size = size;
@@ -329,7 +329,7 @@ static int mmap_file(struct cio_ctx *ctx, struct cio_chunk *ch, size_t size)
         content_size = cio_file_st_get_content_size(cf->map, fs_size);
         if (content_size == -1) {
             cio_log_error(ctx, "invalid content size %s", cf->path);
-            cio_file_close(ch, CIO_TRUE);
+            cio_file_close(ch, CIO_FALSE);
             return -1;
         }
         cf->data_size = content_size;
